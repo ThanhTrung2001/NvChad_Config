@@ -20,6 +20,7 @@ return {
         "prettierd",
         "tailwindcss-language-server",
         "typescript-language-server",
+        "angular-language-server",
       }
     }
   },
