@@ -10,19 +10,21 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
+      -- require "custom.configs.lspconfig"
     end,
   },
   {
     "williamboman/mason.nvim",
-    opts ={
+    opts = {
       ensure_installed = {
+        "rust-analyzer",
         "eslint-lsp",
         "prettierd",
         "tailwindcss-language-server",
         "typescript-language-server",
         "angular-language-server",
-      }
-    }
+      },
+    },
   },
   {
     "nvimtools/none-ls.nvim",
@@ -47,7 +49,28 @@ return {
        "javascript",
        "typescript",
        "tsx",
+       "c_sharp", "dockerfile", "yaml"
   		},
   	},
   },
+  {
+    "vim-crystal/vim-crystal",
+    ft = "crystal",
+    config = function(_)
+        vim.g.crystal_auto_format = 1
+    end
+},
+
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
+
+  -- {
+  -- 	"nvim-treesitter/nvim-treesitter",
+  -- 	opts = {
+  -- 		ensure_installed = {
+  -- 			"vim", "lua", "vimdoc",
+  --      "html", "css"
+  -- 		},
+  -- 	},
+  -- },
 }
