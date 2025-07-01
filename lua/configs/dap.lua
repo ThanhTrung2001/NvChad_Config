@@ -16,6 +16,33 @@ require("dap-vscode-js").setup({
   },
 })
 
+-- Manual adapter configuration as fallback
+dap.adapters["pwa-node"] = {
+  type = "server",
+  host = "localhost",
+  port = "${port}",
+  executable = {
+    command = "node",
+    args = {
+      vim.fn.stdpath("data") .. "/vscode-js-debug/out/src/vsDebugServer.js",
+      "${port}"
+    },
+  }
+}
+
+dap.adapters["pwa-chrome"] = {
+  type = "server",
+  host = "localhost", 
+  port = "${port}",
+  executable = {
+    command = "node",
+    args = {
+      vim.fn.stdpath("data") .. "/vscode-js-debug/out/src/vsDebugServer.js",
+      "${port}"
+    },
+  }
+}
+
 -- JavaScript configurations
 dap.configurations.javascript = {
   {
@@ -27,7 +54,6 @@ dap.configurations.javascript = {
     sourceMaps = true,
     protocol = "inspector",
     port = 3000,
-    webRoot = "${workspaceFolder}",
   },
   {
     type = "pwa-node",
@@ -89,6 +115,10 @@ dapui.setup({
   controls = {
     enabled = true,
     element = "repl",
+    icons = {
+      run_last = "↻",
+      terminate = "□",
+    },
   },
   floating = {
     max_height = nil,
